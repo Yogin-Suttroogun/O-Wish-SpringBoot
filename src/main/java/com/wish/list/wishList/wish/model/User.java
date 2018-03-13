@@ -17,7 +17,7 @@ public class User {
 	private Integer userID;
 	
 	@Column(name = "name")
-	private String fullName;
+	private String name;
 	
 	@Column(name = "email")
 	private String email;
@@ -29,10 +29,10 @@ public class User {
 		
 	}
 	
-	public User(Integer userID, String fullName, String email, String password) {
+	public User(Integer userID, String name, String email, String password) {
 		super();
 		this.userID = userID;
-		this.fullName = fullName;
+		this.name = name;
 		this.email = email;
 		this.password = password;
 	}
@@ -45,12 +45,12 @@ public class User {
 		this.userID = userID;
 	}
 
-	public String getFullName() {
-		return fullName;
+	public String getname() {
+		return name;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
