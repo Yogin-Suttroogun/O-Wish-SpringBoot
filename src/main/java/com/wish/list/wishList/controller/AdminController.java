@@ -9,39 +9,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wish.list.wishList.dto.UserDto;
-import com.wish.list.wishList.service.UserService;
-import com.wish.list.wishList.wish.model.User;
+import com.wish.list.wishList.dto.AdminDto;
+import com.wish.list.wishList.service.AdminService;
+import com.wish.list.wishList.wish.model.Admin;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/admins")
+public class AdminController {
 	
 	@Autowired
-	private UserService userService;
+	private AdminService adminService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public List<User> getUser(){
-		List<User> userList = userService.getUser();
-		return userList;
+	public List<Admin> getAdmin(){
+		List<Admin> adminList = adminService.getAdmin();
+		return adminList;
 	}
 	
 	@RequestMapping(value = "/{email}", method = RequestMethod.GET)
-	public Boolean getUserEmail(@PathVariable String email) {
-		Integer countEmail = userService.checkEmailUserExist(email);
+	public Boolean getAdminEmail(@PathVariable String email) {
+		Integer countEmail = adminService.checkEmailAdminExist(email);
 		if(countEmail > 0) {
 			return true;
 		}
-		return false;
+		return false;	
 	}
 	
-	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
-	public Boolean postUser(@RequestBody UserDto userDto){		
+	@RequestMapping(value = "/newAdmin", method = RequestMethod.POST)
+	public Boolean postAdmin(@RequestBody AdminDto adminDto){
 		try {
-			userService.postNewUser(userDto);
+			adminService.postNewAdmin(adminDto);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
+
 }

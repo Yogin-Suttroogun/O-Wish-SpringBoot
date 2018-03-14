@@ -8,49 +8,33 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "admin")
+public class Admin {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "userID")
-	private Integer userID;
+	@Column(name = "adminID")
+	private Integer adminID;
 	
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "email")
 	private String email;
-	
-	@Column(name = "password")
 	private String password;
 	
-	public User() {
-		
+	public Admin() {
 	}
 	
-	public User(Integer userID, String name, String email, String password) {
+	public Admin(Integer adminID, String email, String password) {
 		super();
-		this.userID = userID;
-		this.name = name;
+		this.adminID = adminID;
 		this.email = email;
 		this.password = password;
 	}
 
-	public Integer getUserID() {
-		return userID;
+	public Integer getAdminID() {
+		return adminID;
 	}
 
-	public void setUserID(Integer userID) {
-		this.userID = userID;
-	}
-
-	public String getname() {
-		return name;
-	}
-
-	public void setname(String name) {
-		this.name = name;
+	public void setAdminID(Integer adminID) {
+		this.adminID = adminID;
 	}
 
 	public String getEmail() {
