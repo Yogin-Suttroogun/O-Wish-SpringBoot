@@ -5,5 +5,7 @@ import com.wish.list.wishList.wish.model.User;
 
 public interface UserService {
 	public List<User> getUser();
+	
+	public Integer checkEmailExist(String email);
 
 }
