@@ -39,4 +39,9 @@ public class AdminServiceImpl implements AdminService{
 		return false;
 	}
 
+	@Override
+	public Integer checkCurrentAdminExist(String email, String password) {
+		return adminRepository.findCorrectLoginAdmin(email, password);
+	}
+
 }

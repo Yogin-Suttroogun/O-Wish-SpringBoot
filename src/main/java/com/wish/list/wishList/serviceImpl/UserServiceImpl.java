@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService{
 		}
 		return false;
 	}
+
+	@Override
+	public Integer checkCurrentLoginExist(String email, String password) {
+		return userRepository.findCorrectLoginUser(email, password);
+	}
 }

@@ -10,5 +10,7 @@ public interface AdminService {
 	
 	public Integer checkEmailAdminExist(String email);
 	
+	public Integer checkCurrentAdminExist(String email, String password);
+	
 	public Boolean postNewAdmin(AdminDto adminDto);
 }

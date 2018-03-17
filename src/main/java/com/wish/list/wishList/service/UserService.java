@@ -10,6 +10,8 @@ public interface UserService {
 	
 	public Integer checkEmailUserExist(String email);
 	
+	public Integer checkCurrentLoginExist(String email, String password);
+	
 	public Boolean postNewUser(UserDto userDto);
 
 }

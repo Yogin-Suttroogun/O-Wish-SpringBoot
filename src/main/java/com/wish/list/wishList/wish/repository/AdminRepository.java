@@ -17,4 +17,7 @@ public interface AdminRepository extends JpaRepository<Admin,Long>{
 	
 	@Query("select count(e.adminID) from Admin e where e.email like :email")
 	public Integer findAdminCountByEmail(@Param("email") String email);
+	
+	@Query("select count(e.adminID) from Admin e where e.email like :email and e.password like :password")
+	public Integer findCorrectLoginAdmin(@Param("email") String email, @Param("password") String password);
 }

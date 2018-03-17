@@ -29,7 +29,16 @@ public class UserController {
 	@RequestMapping(value = "/{email}", method = RequestMethod.GET)
 	public Boolean getUserEmail(@PathVariable String email) {
 		Integer countEmail = userService.checkEmailUserExist(email);
-		if(countEmail > 0) {
+		if(countEmail == 1) {
+			return true;
+		}
+		return false;
+	}
+	
+	@RequestMapping(value = "/{email}/{password}", method = RequestMethod.GET)
+	public Boolean getCurrentLoginUser(@PathVariable String email, @PathVariable String password) {
+		Integer countLogin = userService.checkCurrentLoginExist(email, password);
+		if(countLogin == 1) {
 			return true;
 		}
 		return false;

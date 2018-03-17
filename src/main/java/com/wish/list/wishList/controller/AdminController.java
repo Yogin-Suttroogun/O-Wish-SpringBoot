@@ -29,10 +29,19 @@ public class AdminController {
 	@RequestMapping(value = "/{email}", method = RequestMethod.GET)
 	public Boolean getAdminEmail(@PathVariable String email) {
 		Integer countEmail = adminService.checkEmailAdminExist(email);
-		if(countEmail > 0) {
+		if(countEmail == 0) {
 			return true;
 		}
 		return false;	
+	}
+	
+	@RequestMapping(value = "/{email}/{password}", method = RequestMethod.GET)
+	public Boolean getCurrentLoginAdmin(@PathVariable String email, @PathVariable String password) {
+		Integer countLoginAdmin = adminService.checkCurrentAdminExist(email, password);
+		if(countLoginAdmin == 1) {
+			return true;
+		}
+		return false;
 	}
 	
 	@RequestMapping(value = "/newAdmin", method = RequestMethod.POST)
