@@ -17,7 +17,7 @@ import com.mysql.jdbc.Blob;
 public class Product {
 	
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "productID")
 	private Integer productID;
 	
@@ -25,7 +25,7 @@ public class Product {
 	private int price;
 	private String description;
 	
-	@Lob @Basic(fetch = FetchType.LAZY)
+	@Lob @Basic(fetch = FetchType.EAGER)
 	@Column(length = 100000)
 	private byte[] picture;
 	
