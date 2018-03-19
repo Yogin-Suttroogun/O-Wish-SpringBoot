@@ -53,12 +53,12 @@ public class UserServiceImpl implements UserService{
 		User user = userRepository.findUserToResetPassword(userResetPasswordDto.getEmail(), userResetPasswordDto.getPassword());
 		
 		//if yes set password -> update
-		if(user != null) {
+		if(userRepository.save(user) != null) {
 			user.setPassword(userResetPasswordDto.getNewPassword());
 			userRepository.save(user);
 			return true;
-		}else {
-			return false;
 		}
+		
+		return false;
 	}
 }
