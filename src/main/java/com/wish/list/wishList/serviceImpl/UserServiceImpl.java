@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wish.list.wishList.dto.UserDto;
+import com.wish.list.wishList.dto.UserResetPasswordDto;
 import com.wish.list.wishList.service.UserService;
 import com.wish.list.wishList.wish.model.User;
 import com.wish.list.wishList.wish.repository.UserRepository;
@@ -43,5 +44,21 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Integer checkCurrentLoginExist(String email, String password) {
 		return userRepository.findCorrectLoginUser(email, password);
+	}
+
+	
+	@Override
+	public Boolean checkUserToResetPassword(UserResetPasswordDto userResetPasswordDto) {
+		//Verify if user exists
+		User user = userRepository.findUserToResetPassword(userResetPasswordDto.getEmail(), userResetPasswordDto.getPassword());
+		
+		//if yes set password -> update
+		if(user != null) {
+			user.setPassword(userResetPasswordDto.getNewPassword());
+			userRepository.save(user);
+			return true;
+		}else {
+			return false;
+		}
 	}
 }

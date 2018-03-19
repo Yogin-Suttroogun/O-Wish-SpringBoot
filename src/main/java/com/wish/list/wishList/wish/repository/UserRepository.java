@@ -20,4 +20,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 	@Query("select count(e.userID) from User e where e.email like :email and e.password like :password")
 	public Integer findCorrectLoginUser(@Param("email") String email, @Param("password") String password);
 	
+	@Query("select e from User e where e.email like :email and e.password like :password")
+	public User findUserToResetPassword(@Param("email") String email, @Param("password") String password);
+	
 }

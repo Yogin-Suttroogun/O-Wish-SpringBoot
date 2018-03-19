@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wish.list.wishList.dto.UserDto;
+import com.wish.list.wishList.dto.UserResetPasswordDto;
 import com.wish.list.wishList.service.UserService;
 import com.wish.list.wishList.wish.model.User;
 
@@ -52,5 +53,16 @@ public class UserController {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	@RequestMapping(value = "/resetPassword", method = RequestMethod.PUT)
+	public Boolean updateUserPassword(@RequestBody UserResetPasswordDto userResetPasswordDto) {
+		try {
+			userService.checkUserToResetPassword(userResetPasswordDto);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
 	}
 }
