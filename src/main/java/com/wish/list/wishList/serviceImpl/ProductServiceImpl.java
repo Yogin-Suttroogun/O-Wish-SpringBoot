@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wish.list.wishList.dto.ProductDto;
+import com.wish.list.wishList.dto.ProductUpdateItemDto;
 import com.wish.list.wishList.service.ProductService;
 import com.wish.list.wishList.wish.model.Product;
 import com.wish.list.wishList.wish.repository.ProductRepository;
@@ -34,6 +35,23 @@ public class ProductServiceImpl implements ProductService{
 			productRepository.save(product);
 			return true;
 		}
+		return false;
+	}
+
+	@Override
+	public Boolean checkProductItemToUpdate(ProductUpdateItemDto productUpdateItemDto) {
+		Product product = productRepository.findProductTitleToUpdateItem(productUpdateItemDto.getTitle());
+		
+		if (productRepository.save(product) != null) {
+			product.setPrice(productUpdateItemDto.getPrice());
+			product.setDescription(productUpdateItemDto.getDescription());
+			product.setPicture(productUpdateItemDto.getPicture());
+			product.setSupplier(productUpdateItemDto.getSupplier());
+			
+			productRepository.save(product);
+			return true;
+		}
+		
 		return false;
 	}
 

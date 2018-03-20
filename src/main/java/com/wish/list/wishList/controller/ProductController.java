@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wish.list.wishList.dto.ProductDto;
+import com.wish.list.wishList.dto.ProductUpdateItemDto;
+import com.wish.list.wishList.dto.UserResetPasswordDto;
 import com.wish.list.wishList.service.ProductService;
 import com.wish.list.wishList.wish.model.Product;
 
@@ -34,5 +36,15 @@ public class ProductController {
 			return false;
 		}
 	}
-
+	
+	@RequestMapping(value = "/updateItem", method = RequestMethod.PUT)
+	public Boolean updateUserPassword(@RequestBody ProductUpdateItemDto productUpdateItemDto) {
+		try {
+			productService.checkProductItemToUpdate(productUpdateItemDto);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
+	}
 }
