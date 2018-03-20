@@ -3,6 +3,7 @@ package com.wish.list.wishList.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +28,16 @@ public class ProductController {
 		return productList;
 	}
 	
+	@RequestMapping(value = "/{title}", method = RequestMethod.GET)
+	public Boolean getProductTitle(@PathVariable String title) {
+		Integer countProductTitle = productService.checkProductTitleExist(title);
+		if(countProductTitle == 1) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 	@RequestMapping(value = "/newItem", method = RequestMethod.POST)
 	public Boolean postNewItem(@RequestBody ProductDto productDto) {
 		try {
@@ -38,9 +49,21 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/updateItem", method = RequestMethod.PUT)
-	public Boolean updateUserPassword(@RequestBody ProductUpdateItemDto productUpdateItemDto) {
+	public Boolean updateProduct(@RequestBody ProductUpdateItemDto productUpdateItemDto) {
 		try {
 			productService.checkProductItemToUpdate(productUpdateItemDto);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
+	}
+	
+	
+	@RequestMapping(value = "/deleteItem/{title}", method = RequestMethod.DELETE)
+	public Boolean deleteProduct(@PathVariable String title) {
+		try {
+			productService.deleteProductItem(title);
 			return true;
 		} catch (Exception e) {
 			return false;

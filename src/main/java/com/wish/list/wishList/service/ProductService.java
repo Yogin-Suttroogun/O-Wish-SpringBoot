@@ -12,4 +12,8 @@ public interface ProductService {
 	public Boolean postNewItem(ProductDto productDto);
 
 	public Boolean checkProductItemToUpdate(ProductUpdateItemDto productUpdateItemDto);
+
+	public Boolean deleteProductItem(String title);
+
+	public Integer checkProductTitleExist(String title);
 }

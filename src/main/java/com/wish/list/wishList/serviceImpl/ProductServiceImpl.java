@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Boolean checkProductItemToUpdate(ProductUpdateItemDto productUpdateItemDto) {
-		Product product = productRepository.findProductTitleToUpdateItem(productUpdateItemDto.getTitle());
+		Product product = productRepository.findProductTitleToItem(productUpdateItemDto.getTitle());
 		
 		if (productRepository.save(product) != null) {
 			product.setPrice(productUpdateItemDto.getPrice());
@@ -53,6 +53,21 @@ public class ProductServiceImpl implements ProductService{
 		}
 		
 		return false;
+	}
+
+	@Override
+	public Boolean deleteProductItem(String title) {
+		Product product = productRepository.findProductTitleToItem(title);
+		if(productRepository.count() > 0) {
+			productRepository.delete(product);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Integer checkProductTitleExist(String title) {
+		return productRepository.findProductByTitle(title);
 	}
 
 }

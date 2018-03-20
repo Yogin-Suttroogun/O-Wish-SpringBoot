@@ -16,5 +16,8 @@ public interface ProductRepository extends JpaRepository<Product,Long>{
 	public List<Product> findAllProduct();
 	
 	@Query("select p from Product p where p.title like :title")
-	public Product findProductTitleToUpdateItem(@Param("title") String title);
+	public Product findProductTitleToItem(@Param("title") String title);
+	
+	@Query("select count(p.title) from Product p where p.title like :title")
+	public Integer findProductByTitle(@Param("title") String title);
 }
